@@ -7,8 +7,8 @@ data$FTHG # Goles anotados por los equipos que jugaron en casa
 data$FTAG # Goles anotados por los equipos que jugaron como visitante
 
 #Tercera parte
-(table(data$FTHG)/dim(data)[1])*100 # Probabilidades marginales estimadas
+(table(data$FTHG)/dim(data)[1])*100 # Probabilidades marginales estimadas, equipos casa
 
-(table(data$FTAG)/dim(data)[1])*100 # Probabilidades marginales estimadas
+(table(data$FTAG)/dim(data)[1])*100 # Probabilidades marginales estimadas, equipos visitante
 
 (table(data$FTHG, data$FTAG)/dim(data)[1])*100 # Probabilidades conjuntas estimadas
