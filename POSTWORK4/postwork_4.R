@@ -26,23 +26,3 @@ summary(data)
 
 (cocientes <- t(cocientes))
 
-#Lo anterior igual lo pudimos lograr de la siguiente manera:
-
-pcta/outer(pcasa, pvisita, "*")
-
-#Primero extraemos de manera aleatoria algunas filas de nuestro data frame data, esto lo hacemos con ayuda de la función sample.
-set.seed(2)
-indices <- sample(dim(data)[1], size = 380, replace = TRUE)
-newdata <- data[indices, ]
-
-#Con ayuda de la función table obtenemos las estimaciones de probabilidades
-
-(pcasa <- round(table(newdata$FTHG)/dim(newdata)[1], 3)) # Probabilidades marginales estimadas para los equipos que juegan en casa
-
-(pvisita <- round(table(newdata$FTAG)/dim(newdata)[1], 3)) # Probabilidades marginales estimadas para los equipos que juegan como visitante
-
-(pcta <- round(table(newdata$FTHG, newdata$FTAG)/dim(newdata)[1], 3)) # Probabilidades conjuntas estimadas para los partidos
-
-#Obtenemos nuevamente los cocientes de probabilidades conjuntas entre probabilidades marginales
-
-(cocientes <- pcta/outer(pcasa, pvisita, "*"))
