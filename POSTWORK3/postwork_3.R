@@ -46,6 +46,6 @@ pcta <- rename(pcta, gcasa = Var1, gvisita = Var2, ProbEst = value)
 pcta %>% ggplot(aes(gcasa, gvisita)) + 
   geom_tile(aes(fill = ProbEst)) + 
   ggtitle('Probabilidades conjuntas estimadas') +
-  scale_fill_gradient(low = 'blue', high = 'red')  
-  #theme(axis.text.x = element_text(angle = 90, hjust = 0))
+  scale_fill_gradient(low = 'blue', high = 'red') +
+  theme(axis.text.x = element_text(angle = 90, hjust = 0))
 
