@@ -1,4 +1,11 @@
+#Solución al Postwork Sesión 4
 
+
+library(dplyr)
+library(reshape2)
+library(ggplot2)
+
+data <- read.csv("datos.csv")
 dim(data)
 str(data)
 tail(data)
