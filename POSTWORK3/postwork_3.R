@@ -1,5 +1,4 @@
-
-#Solución al Postwork Sesión 3
+#POSTWORK 3
 
 
 library(dplyr)
@@ -13,37 +12,36 @@ tail(data)
 View(data)
 summary(data)
 
-#Con ayuda de la función table obtenemos las estimaciones de probabilidades solicitadas
-(pcasa <- round(table(data$FTHG)/dim(data)[1], 3)) # Probabilidades marginales estimadas para los equipos que juegan en casa
+(probcasa <- round(table(data$FTHG)/dim(data)[1], 3)) 
 
-(pvisita <- round(table(data$FTAG)/dim(data)[1], 3)) # Probabilidades marginales estimadas para los equipos que juegan como visitante
+(probvisita <- round(table(data$FTAG)/dim(data)[1], 3)) 
 
-(pcta <- round(table(data$FTHG, data$FTAG)/dim(data)[1], 3)) # Probabilidades conjuntas estimadas para los partidos
+(probconjunta <- round(table(data$FTHG, data$FTAG)/dim(data)[1], 3)) 
 
-pcasa <- as.data.frame(pcasa)
-str(pcasa)
+probcasa <- as.data.frame(probcasa)
+str(probcasa)
 
-pcasa <- pcasa %>% rename(goles = Var1, FRel = Freq)
-tail(pcasa)
+probcasa <- probcasa %>% rename(goles = Var1, FRel = Freq)
+tail(probcasa)
 
-p <- ggplot(pcasa, aes(x = goles, y = FRel)) + 
+p <- ggplot(probcasa, aes(x = goles, y = FRel)) + 
   geom_bar (stat="identity", fill = 'blue') +
   ggtitle('Equipo de casa')
 p
 
 
-pvisita <- as.data.frame(pvisita)
-pvisita <- rename(pvisita, goles = Var1, FRel = Freq)
-tail(pvisita)
+probvisita <- as.data.frame(probvisita)
+probvisita <- rename(probvisita, goles = Var1, FRel = Freq)
+tail(probvisita)
 
-p <- ggplot(pvisita, aes(x = goles, y = FRel)) + 
+p <- ggplot(probvisita, aes(x = goles, y = FRel)) + 
   geom_bar (stat="identity", fill = 'red') +
   ggtitle('Equipo visitante')
 p
 
-pcta <- melt(pcta)
-pcta <- rename(pcta, gcasa = Var1, gvisita = Var2, ProbEst = value)
-pcta %>% ggplot(aes(gcasa, gvisita)) + 
+probconjunta <- melt(probconjunta)
+probconjunta <- rename(probconjunta, gcasa = Var1, gvisita = Var2, ProbEst = value)
+probconjunta %>% ggplot(aes(gcasa, gvisita)) + 
   geom_tile(aes(fill = ProbEst)) + 
   ggtitle('Probabilidades conjuntas estimadas') +
   scale_fill_gradient(low = 'blue', high = 'red') +
